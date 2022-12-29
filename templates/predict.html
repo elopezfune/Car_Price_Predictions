@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Predictions!</title>
+</head>
+
+<body>
+
+     <h1>&nbsp&nbspCar Price Predictions!
+     
+     </h1>
+     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    
+     <div class="vertical-menu"> 
+         <a href="#" class="active">Home</a>  
+         <a href="analytics">Analytics</a>
+         <a href="modeling">Modeling</a>
+         <a href="predict">Predict</a>
+     
+     <div class="white-box-vertical"> </div>
+     
+     
+     
+     
+     <div class="white-box">  
+           <h1>Price Predictions</h1>
+     
+     
+     <div style="color:black">
+        <form action="{{url_for('predict')}}" method="post">            
+            <h3>Car's brand: &nbsp&nbsp 
+                <select name="Brand" id="Brand" required="required">
+                        <option value="Ambassador">Ambassador</option>
+		        <option value="Ashok">Ashok</option>
+		        <option value="Audi">Audi</option>
+		        <option value="BMW">BMW</option>
+		        <option value="Chevrolet">Chevrolet</option>
+		        <option value="Daewoo">Daewoo</option>
+		        <option value="Datsun">Datsun</option>
+		        <option value="Fiat">Fiat</option>
+		        <option value="Force">Force</option>
+		        <option value="Ford">Ford</option>
+		        <option value="Honda">Honda</option>
+		        <option value="Hyundai">Hyundai</option>
+		        <option value="Isuzu">Isuzu</option>
+		        <option value="Jaguar">Jaguar</option>
+		        <option value="Jeep">Jeep</option>
+		        <option value="Kia">Kia</option>
+		        <option value="Land">Land</option>
+		        <option value="Lexus">Lexus</option>
+		        <option value="MG">MG</option>
+		        <option value="Mahindra">Mahindra</option>
+		        <option value="Maruti">Maruti</option>
+		        <option value="Mercedes-Benz">Mercedes-Benz</option>
+		        <option value="Mitsubishi">Mitsubishi</option>
+		        <option value="Nissan">Nissan</option>                
+		        <option value="Opel">Opel</option>
+		        <option value="Renault">Renault</option>
+		        <option value="Skoda">Skoda</option>
+		        <option value="Tata">Tata</option>
+		        <option value="Toyota">Toyota</option>
+		        <option value="Volkswagen">Volkswagen</option>
+		        <option value="Volvo">Volvo</option>
+                 </select> </h3> 
+             
+             
+            <h3>Previous owner:s&nbsp&nbsp  
+            <select name="Owner" id="Owner" required="required">
+                <option value="First Owner">First Owner</option>
+                <option value="Second Owner">Second Owner</option>
+                <option value="Third Owner">Third Owner</option>
+                <option value="Fourth & Above Owner">Fourth & Above Owner</option>
+                <option value="Test Drive Car">Test Drive Car</option>
+            </select>
+            </h3>
+            
+            <h3>Type of fuel:&nbsp&nbsp  
+            <select name="Fuel" id="Fuel" required="required">
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+                <option value="LPG">LPG</option>
+            </select>
+            </h3> 
+                        
+            
+            <h3>Seller type:&nbsp&nbsp  
+            <select name="Seller_Type" id="Seller_Type" required="required">
+                <option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+                <option value="Trustmark Dealer">Trustmark Dealer</option>
+            </select>
+            </h3>
+            
+            <h3>Type of transmission:&nbsp&nbsp
+            <select name="Transmission" id="Transmission" required="required">
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+            </select>
+            </h3>
+            
+            <h3>Number of seats:&nbsp&nbsp
+            <select name="Seats" id="Seats" required="required">
+                <option value="Two">Two</option>
+                <option value="Four">Four</option>
+                <option value="Five">Five</option>
+                <option value="Six">Six</option>
+                <option value="Seven">Seven</option>
+                <option value="Eight">Eight</option>
+                <option value="Nine">Nine</option>
+                <option value="Ten">Ten</option>
+                <option value="Fourteen">Fourteen</option>
+            </select>
+            </h3>
+             
+            <h3>Years: &nbsp&nbsp<input id="first" min="0.0" name="Year" required="required"> </h3>
+            <h3>Kilometers Driven:<input id="first" min="1.0" name="Kms_Driven" required="required"> </h3>
+            <h3>Mileage [kmpl]: &nbsp&nbsp<input id="first" min="0.0" name="Mileage[kmpl]" required="required"> </h3>
+            <h3>Engine [CC]: &nbsp&nbsp<input id="first" min="0.0" name="Engine" required="required"> </h3>
+            <h3>Max Power [bhp]: &nbsp&nbsp<input id="first" min="0.0" name="Max_Power" required="required"> </h3>
+            
+            <br>
+            <br>
+            <button id="sub" type="submit ">Estimate</button>
+            <br>
+            
+        </form>
+
+
+
+        <br><br><h3>{{prediction_text}}<h3>
+    </div>
+     
+           
+     </div>
+     
+     </div>
+     
+    
+	
+
+
+    
+
+
+
+
+    <style>
+    
+    	.white-box-vertical {width: 350px; height: 845px; margin-top: -240px; margin-left: auto; margin-right: auto;
+    	                     background: rgba(255,255,255,0.3); padding: 50px; -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    	                     -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.15); box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    	                     -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px;
+    	                     border-radius: 5px;}
+    	 
+    	 .white-box {width: 1200px; height: 845px; margin-top: -944px; margin-left: 500px; margin-right: auto;
+    	            background: rgba(255,255,255,0.3); padding: 50px; -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    	            -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.15); box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    	            -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px;
+    	            border-radius: 5px;}
+    
+        .vertical-menu {width: 450px;}
+        .vertical-menu a {background-color: #eee; color: black; display: block;  padding: 12px; text-decoration: none;-webkit-border-radius: 2px;}
+        .vertical-menu a:hover {background-color: #ccc;}
+        .vertical-menu a.active {background-color: #04AA6D; color: white;}
+    
+       
+    
+        body {background-image: url("static/car_shop.jpg");
+              background-repeat: no-repeat;
+              background-size: cover;
+              text-align: left;
+              padding: 0px;
+        }
+        
+        #research {
+            font-size: 18px;
+            width: 100px;
+            height: 23px;
+            top: 23px;
+        }
+        
+        #box {
+            border-radius: 20px;
+            border-color: 45px;
+            border-style: solid;
+            font-family: cursive;
+            text-align: center;
+            background-color: rgb(168, 131, 61);
+            font-size: medium;
+            position: absolute;
+            width: 500px;
+            bottom: 9%;
+            height: 850px;
+            right: 30%;
+            padding: 0px;
+            margin: 0px;
+            font-size: 14px;
+        }
+        
+        #sub {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+        
+        #sub:hover {
+            background-color: #04AA6D;
+        }
+        
+               
+        #first {border-radius: 20px; width: 100px; height: 20px; font-size: 20px; text-align: center;}
+                
+    </style>
+</body>
+
+</html>
