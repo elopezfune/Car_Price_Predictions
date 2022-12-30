@@ -23,7 +23,7 @@ np.random.seed(seed=config.SEED)
 app = Flask(__name__)
 @app.route('/',methods=['GET'])
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 
 @app.route('/analytics',methods=['GET','POST'])
